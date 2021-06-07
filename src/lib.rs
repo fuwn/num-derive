@@ -11,6 +11,7 @@
 #![crate_type = "proc-macro"]
 #![doc(html_root_url = "https://docs.rs/num-derive/0.3")]
 #![recursion_limit = "512"]
+#![deny(clippy::nursery)]
 
 //! Procedural macros to derive numeric traits in Rust.
 //!
@@ -173,7 +174,7 @@ impl NumTraits {
             if let Ok(syn::Meta::NameValue(mnv)) = attr.parse_meta() {
                 if mnv.path.is_ident("num_traits") {
                     if let syn::Lit::Str(lit_str) = mnv.lit {
-                        return NumTraits {
+                        return Self {
                             import: syn::Ident::new(&lit_str.value(), lit_str.span()),
                             explicit: true,
                         };
