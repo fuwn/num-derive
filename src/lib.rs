@@ -185,7 +185,7 @@ impl NumTraits {
         }
 
         // Otherwise, we'll implicitly import our own.
-        NumTraits {
+        Self {
             import: Ident::new("_num_traits", Span::call_site()),
             explicit: false,
         }
